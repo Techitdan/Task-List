@@ -3,6 +3,13 @@ window.addEventListener('load', () => {
   const input = document.querySelector('#new-task-input');
   const list_el = document.querySelector('#tasks');
 
+  
+  // Load tasks from local storage on page load
+  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  savedTasks.forEach((taskText) => {
+    createTaskElement(taskText);
+  });
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -32,6 +39,7 @@ window.addEventListener('load', () => {
 
     const task_actions_el = document.createElement("div");
     task_actions_el.classList.add ("actions");
+
 
     const task_edit_el = document.createElement("button");
     task_edit_el.classList.add("edit");
@@ -67,3 +75,7 @@ window.addEventListener('load', () => {
     });
   });
 })
+
+
+//localStorage.setItem('keyName', input.value);
+localStorage.setItem('keyName', task);
